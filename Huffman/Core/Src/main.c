@@ -69,8 +69,8 @@ int main(void)
 
     // Variable declaration
 	uint8_t text[] = "aaaabbbccd";    // Texte à compresser
-	uint8_t text_compressed[TAILLE_MAX_COMPRESS];
-	uint32_t tab_caractere[MAX_CHAR];
+//	uint8_t text_compressed[TAILLE_MAX_COMPRESS];
+//	uint32_t tab_caractere[MAX_CHAR];
 	uint32_t nbr_char_tot;
 	uint32_t nbr_chat_diff;
 
