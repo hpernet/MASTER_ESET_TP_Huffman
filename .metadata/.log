@@ -1,0 +1,33 @@
+!SESSION 2021-09-20 18:45:12.375 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-09-20 18:45:58.122
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-09-20 18:45:58.272
+!MESSAGE Log4j initialized with config file D:\Git_local\TP_ProgC_Hoffman\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-09-20 18:46:04.357
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2021-09-20 18:48:28.723 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2021-09-20 18:48:39.886
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-09-20 18:48:39.926
+!MESSAGE Log4j initialized with config file D:\Git_local\TP_ProgC_Hoffman\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-09-20 18:48:43.281
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-09-20 18:50:18.834
+!MESSAGE Indexed 'Huffman' (23 sources, 100 headers) in 4,17 sec: 8 332 declarations; 32 492 references; 6 unresolved inclusions; 303 syntax errors; 1 222 unresolved names (2,9 %)
