@@ -61,8 +61,8 @@ all: main-build
 main-build: Huffman.elf secondary-outputs
 
 # Tool invocations
-Huffman.elf: $(OBJS) $(USER_OBJS) D:\Git_local\TP_ProgC_Hoffman\Huffman\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Huffman.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Git_local\TP_ProgC_Hoffman\Huffman\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Huffman.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Huffman.elf: $(OBJS) $(USER_OBJS) D:\Git\Firmware\TP_ProgC_Hoffman\Huffman\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Huffman.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Git\Firmware\TP_ProgC_Hoffman\Huffman\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Huffman.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

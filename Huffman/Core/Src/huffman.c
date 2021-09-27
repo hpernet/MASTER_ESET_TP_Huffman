@@ -10,61 +10,76 @@
 #include "huffman.h"
 
 /*****************************************************
- *                      Define                       *
- ****************************************************/
-
-/*****************************************************
- *                  Global variables                 *
- ****************************************************/
-struct noeud* arbre_huffman[NB_CHAR_MAX];  // TODO Dynamic allocation
-struct noeud  feuilles_huffman[NB_CHAR_MAX];  // TODO Dynamic allocation
-
-/*****************************************************
  *                     Functions                     *
  ****************************************************/
 /**
  *  @brief Fill in occurrence array
  */
-void occurrence(uint8_t* chaine, uint32_t tab[NB_CHAR_MAX])
+void occurrence(uint8_t* i_chaine, uint32_t* o_tab)
 {
 	// Variable declaration
-	uint8_t index = 0;
+	uint16_t index = 0;
 
 	do
 	{
 		// Increment occurrence array
-		tab[chaine[index]]++;
+		o_tab[i_chaine[index]]++;
 
 		// Increment index
 		index++;
 
 	// Until we reach the end of the chain
-	}while(END_CHAR != chaine[index]);
+	}while(END_CHAR != i_chaine[index]);
+
+	// TODO : print occurence tab on Serial Com
 }
 
 /**
  *  @brief Create feuilles
  */
-void creer_feuille(struct noeud* arbre[NB_CHAR_MAX], uint32_t tab[NB_CHAR_MAX])
+void creer_feuille(struct noeud* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX])
 {
 	// Variable declaration
-	uint8_t index_occ     = 0;
-	uint8_t index_feuille = 0;
+	uint16_t index_occ     = 0;
+	uint16_t taille_arbre  = 0;
 
+	// Check occurrence array
 	for (index_occ = 0; index_occ < NB_CHAR_MAX; index_occ++)
 	{
-		if (0 != tab[index_occ])
+		// If there is a char
+		if (0 != i_tab[index_occ])
 		{
-			// Create feuille
-			feuilles_huffman[index_feuille].character  = index_occ;
-			feuilles_huffman[index_feuille].occurrence = tab[index_occ];
+			// Allocate memory to the new char
+			o_arbre[taille_arbre] = malloc(sizeof(struct noeud));
 
-			// Save feuille
-			arbre[index_feuille] = &feuilles_huffman[index_feuille];
+			// Initialize feuille
+			o_arbre[taille_arbre]->character   = index_occ;
+			o_arbre[taille_arbre]->occurrence  = i_tab[index_occ];
+			o_arbre[taille_arbre]->droite      = NULL;
+			o_arbre[taille_arbre]->gauche      = NULL;
+			o_arbre[taille_arbre]->taille_code = 0;
 
 			// Increment index
-			index_feuille++;
+			taille_arbre++;
 		}
+	}
+}
+
+void afficher_arbre_huffman(struct noeud* arbre[NB_CHAR_MAX], uint32_t taille)
+{
+	// Variable declaration
+	uint16_t index_arbre;
+
+	// Print every structure of arbres
+	for (index_arbre = 0; index_arbre < taille; index_arbre++)
+	{
+		printf("------ Arbre de Huffman ------ \n");
+		printf("Character = %c \r \n",      arbre[index_arbre]->character);
+		printf("Occurrence = %d \r \n",     arbre[index_arbre]->occurrence);
+		printf("droite = %d \r \n",         arbre[index_arbre]->droite);
+		printf("gauche = %d \r \n",         arbre[index_arbre]->gauche);
+		printf("code = %d \r \n",           arbre[index_arbre]->code);
+		printf("taille du code = %d \r \n", arbre[index_arbre]->taille_code);
 	}
 }
 

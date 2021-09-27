@@ -15,8 +15,8 @@
 /*****************************************************
  *                      Define                       *
  ****************************************************/
-#define NB_CHAR_MAX      256
 #define END_CHAR         '\0'
+
 /*****************************************************
  *                     Structure                     *
  ****************************************************/
@@ -25,7 +25,7 @@ struct noeud
 	uint8_t      character;   // Caractere initial.
 	uint32_t     occurrence;  // Occurrence number.
 	uint32_t     code;        // Code binaire dans l'arbre.
-	uint32_t     taille_code; // Nombtre de bit du code.
+	uint32_t     taille_code; // Nombre de bit du code.
 	struct noeud *gauche;     // Lien vers les noeuds suivant.
 	struct noeud *droite;     //             --
 };

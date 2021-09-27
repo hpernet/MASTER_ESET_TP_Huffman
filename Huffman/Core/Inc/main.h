@@ -42,6 +42,7 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
+#define NB_CHAR_MAX      256
 
 /* USER CODE END EC */
 

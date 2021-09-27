@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "huffman.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -70,9 +71,13 @@ int main(void)
     // Variable declaration
 	uint8_t text[] = "aaaabbbccd";    // Texte à compresser
 //	uint8_t text_compressed[TAILLE_MAX_COMPRESS];
-//	uint32_t tab_caractere[MAX_CHAR];
+	uint32_t tab_caractere[NB_CHAR_MAX];
 	uint32_t nbr_char_tot;
 	uint32_t nbr_chat_diff;
+	uint16_t init_index = 0;
+	uint16_t index = 0;
+
+	struct noeud* arbre_huffman[NB_CHAR_MAX];  // TODO Dynamic allocation
 
   /* USER CODE END 1 */
 
@@ -90,6 +95,12 @@ int main(void)
 
   /* USER CODE BEGIN SysInit */
 
+  // Initialize tab caractere
+  for (init_index =0; init_index < NB_CHAR_MAX; init_index++)
+  {
+	  tab_caractere[init_index] = 0;
+  }
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -104,6 +115,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	occurrence(text, tab_caractere);
+
+	creer_feuille(arbre_huffman, tab_caractere);
+	afficher_arbre_huffman(arbre_huffman, 4);
 
     /* USER CODE BEGIN 3 */
   }
@@ -222,6 +237,9 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+int __io_putchar(int ch) {
+ HAL_UART_Transmit(&huart2, &ch, 1, 1000);
+}
 
 /* USER CODE END 4 */
 
