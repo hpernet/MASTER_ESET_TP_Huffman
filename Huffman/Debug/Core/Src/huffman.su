@@ -1,3 +1,4 @@
 huffman.c:18:6:occurrence	24	static
 huffman.c:40:6:creer_feuille	32	static
 huffman.c:68:6:afficher_arbre_huffman	24	static
+huffman.c:94:6:tri_arbre	24	static

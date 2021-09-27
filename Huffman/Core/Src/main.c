@@ -112,6 +112,8 @@ int main(void)
 
 	creer_feuille(arbre_huffman, tab_caractere);
 	afficher_arbre_huffman(arbre_huffman, 4);
+	tri_arbre(arbre_huffman, 4);
+	afficher_arbre_huffman(arbre_huffman, 4);
 
   /* USER CODE END 2 */
 

@@ -65,7 +65,7 @@ void creer_feuille(struct noeud* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MA
 	}
 }
 
-void afficher_arbre_huffman(struct noeud* arbre[NB_CHAR_MAX], uint32_t taille)
+void afficher_arbre_huffman(struct noeud* i_arbre[NB_CHAR_MAX], uint32_t i_taille)
 {
 	// Variable declaration
 	uint16_t index_arbre;
@@ -76,22 +76,45 @@ void afficher_arbre_huffman(struct noeud* arbre[NB_CHAR_MAX], uint32_t taille)
 	printf("Character | Occurrence |  Droite  |  Gauche  |   Code   | Taille du code |");
 
 	// Print every structure of arbres
-	for (index_arbre = 0; index_arbre < taille; index_arbre++)
+	for (index_arbre = 0; index_arbre < i_taille; index_arbre++)
 	{
 		printf("\r \n");
 		printf("-------------------------------------------------------------------------- ");
 		printf("\r \n");
-		printf("%9c |", arbre[index_arbre]->character);
-		printf("  %9d |", arbre[index_arbre]->occurrence);
-		printf("%9d |", arbre[index_arbre]->droite);
-		printf("%9d |", arbre[index_arbre]->gauche);
-		printf("%9d |", arbre[index_arbre]->code);
-		printf("      %9d |", arbre[index_arbre]->taille_code);
+		printf("%9c |",       i_arbre[index_arbre]->character);
+		printf("  %9d |",     i_arbre[index_arbre]->occurrence);
+		printf("%9d |",       i_arbre[index_arbre]->droite);
+		printf("%9d |",       i_arbre[index_arbre]->gauche);
+		printf("%9d |",       i_arbre[index_arbre]->code);
+		printf("      %9d |", i_arbre[index_arbre]->taille_code);
 	}
 	printf("\r \n");
-
 }
 
+void tri_arbre(struct noeud* io_arbre[NB_CHAR_MAX], uint32_t i_taille)
+{
+	// Variable declaration
+	uint16_t index_algo;
+	uint16_t index_arbre;
+	struct noeud* p_temp_variable;
+
+	// Repeat the sorted algorithm
+	for (index_algo = 0; index_algo < i_taille; index_algo++)
+	{
+		//Check the entire tree
+		for (index_arbre = 0; index_arbre < i_taille; index_arbre++)
+		{
+			// Check if the next case of the array has more occurrence than the actual one
+			if (io_arbre[index_arbre]->occurrence > io_arbre[index_arbre + 1]->occurrence)
+			{
+				// Invert two case of the array
+				p_temp_variable           = io_arbre[index_arbre];
+				io_arbre[index_arbre]     = io_arbre[index_arbre + 1];
+				io_arbre[index_arbre + 1] = p_temp_variable;
+			}
+		}
+	}
+}
 
 /*****************************************************
  *                    End of file                    *

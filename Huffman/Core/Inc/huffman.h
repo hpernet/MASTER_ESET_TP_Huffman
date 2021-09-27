@@ -31,10 +31,12 @@ struct noeud
 };
 
 /*****************************************************
- *                     Functions                     *
+ *                 Public Functions                  *
  ****************************************************/
-void occurrence(uint8_t* chaine, uint32_t tab[NB_CHAR_MAX]);
-void creer_feuille(struct noeud* arbre[NB_CHAR_MAX], uint32_t tab[NB_CHAR_MAX]);
+void occurrence(uint8_t* i_chaine, uint32_t o_tab[NB_CHAR_MAX]);
+void creer_feuille(struct noeud* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX]);
+void afficher_arbre_huffman(struct noeud* i_arbre[NB_CHAR_MAX], uint32_t i_taille);
+void tri_arbre(struct noeud* arbre[NB_CHAR_MAX], uint32_t taille);
 
 #endif /* INC_HUFFMAN_H_ */
 /*****************************************************
