@@ -108,6 +108,11 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
+	occurrence(text, tab_caractere);
+
+	creer_feuille(arbre_huffman, tab_caractere);
+	afficher_arbre_huffman(arbre_huffman, 4);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -115,10 +120,6 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	occurrence(text, tab_caractere);
-
-	creer_feuille(arbre_huffman, tab_caractere);
-	afficher_arbre_huffman(arbre_huffman, 4);
 
     /* USER CODE BEGIN 3 */
   }

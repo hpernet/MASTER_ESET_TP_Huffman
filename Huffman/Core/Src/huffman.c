@@ -57,8 +57,8 @@ void creer_feuille(struct noeud* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MA
 			o_arbre[taille_arbre]->occurrence  = i_tab[index_occ];
 			o_arbre[taille_arbre]->droite      = NULL;
 			o_arbre[taille_arbre]->gauche      = NULL;
+			o_arbre[taille_arbre]->code        = 0;
 			o_arbre[taille_arbre]->taille_code = 0;
-
 			// Increment index
 			taille_arbre++;
 		}
@@ -70,17 +70,26 @@ void afficher_arbre_huffman(struct noeud* arbre[NB_CHAR_MAX], uint32_t taille)
 	// Variable declaration
 	uint16_t index_arbre;
 
+	printf("\r \n");
+	printf("---------------------------- Arbre de Huffman ----------------------------");
+	printf("\r \n");
+	printf("Character | Occurrence |  Droite  |  Gauche  |   Code   | Taille du code |");
+
 	// Print every structure of arbres
 	for (index_arbre = 0; index_arbre < taille; index_arbre++)
 	{
-		printf("------ Arbre de Huffman ------ \n");
-		printf("Character = %c \r \n",      arbre[index_arbre]->character);
-		printf("Occurrence = %d \r \n",     arbre[index_arbre]->occurrence);
-		printf("droite = %d \r \n",         arbre[index_arbre]->droite);
-		printf("gauche = %d \r \n",         arbre[index_arbre]->gauche);
-		printf("code = %d \r \n",           arbre[index_arbre]->code);
-		printf("taille du code = %d \r \n", arbre[index_arbre]->taille_code);
+		printf("\r \n");
+		printf("-------------------------------------------------------------------------- ");
+		printf("\r \n");
+		printf("%9c |", arbre[index_arbre]->character);
+		printf("  %9d |", arbre[index_arbre]->occurrence);
+		printf("%9d |", arbre[index_arbre]->droite);
+		printf("%9d |", arbre[index_arbre]->gauche);
+		printf("%9d |", arbre[index_arbre]->code);
+		printf("      %9d |", arbre[index_arbre]->taille_code);
 	}
+	printf("\r \n");
+
 }
 
 
