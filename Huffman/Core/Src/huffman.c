@@ -196,6 +196,28 @@ void create_code(struct node* p_node, uint32_t i_code, uint32_t i_size)
 	}
 }
 
+struct node* get_adress(struct node* p_node, uint8_t i_char)
+{
+	// Variable declaration
+	struct node* r_p_node;
+
+	// Check right and left pointers
+	if((p_node->droite == NULL) && (p_node->gauche == NULL))
+	{
+		if (i_char == p_node->character)
+		{
+			r_p_node = p_node;
+			return r_p_node;
+		}
+	}
+	else
+	{
+		// Continue to browse the tree
+		return get_adress(p_node->droite, i_char);
+		return get_adress(p_node->gauche, i_char);
+	}
+}
+
 /*****************************************************
  *            Private Functions Declaration          *
  ****************************************************/

@@ -80,6 +80,7 @@ int main(void)
 	// Huffman tree variables
 	struct node* p_huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
 	struct node* p_root;
+	struct node* p_char;
 
   /* USER CODE END 1 */
 
@@ -168,7 +169,17 @@ int main(void)
 	// Browse huffman tree form its root
 	tree_browse(p_root);
 
-	// Print tree
+	p_char = get_adress(p_root, 'a');
+
+	// Print char information
+	printf("\r \n");
+	printf("%9c |",       p_char->character);
+	printf("  %9d |",     p_char->occurrence);
+	printf("%9d |",       p_char->droite);
+	printf("%9d |",       p_char->gauche);
+	printf("%9d |",       p_char->code);
+	printf("      %9d |", p_char->size_code);
+	printf("\r \n");
 
   /* USER CODE END 2 */
 

@@ -76,6 +76,12 @@ void tree_browse(struct node* p_node);
   */
 void create_code(struct node* p_node, uint32_t code, uint32_t size);
 
+/**
+  * @brief Get the adress of the character structure
+  * @retval (struct node*) adress of the character structure
+  */
+struct node* get_adress(struct node* p_node, uint8_t i_char);
+
 #endif /* INC_HUFFMAN_H_ */
 /*****************************************************
  *                    End of file                    *
