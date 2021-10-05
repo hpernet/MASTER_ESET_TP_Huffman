@@ -36,7 +36,8 @@ struct noeud
 void occurrence(uint8_t* i_chaine, uint32_t o_tab[NB_CHAR_MAX]);
 void creer_feuille(struct noeud* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX]);
 void afficher_arbre_huffman(struct noeud* i_arbre[NB_CHAR_MAX], uint32_t i_taille);
-void tri_arbre(struct noeud* arbre[NB_CHAR_MAX], uint32_t taille);
+void sort_tree(struct noeud* arbre[NB_CHAR_MAX], uint32_t taille);
+void reduce_tree(struct noeud* io_tree[NB_CHAR_MAX], uint32_t i_size);
 
 #endif /* INC_HUFFMAN_H_ */
 /*****************************************************

@@ -77,7 +77,8 @@ int main(void)
 	uint16_t init_index = 0;
 	uint16_t index = 0;
 
-	struct noeud* arbre_huffman[NB_CHAR_MAX];  // TODO Dynamic allocation
+	struct noeud* huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
+	struct noeud* root;
 
   /* USER CODE END 1 */
 
@@ -109,11 +110,14 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 	occurrence(text, tab_caractere);
+	creer_feuille(huffman_tree, tab_caractere);
+	afficher_arbre_huffman(huffman_tree, 4);
+	sort_tree(huffman_tree, 4);
+	afficher_arbre_huffman(huffman_tree, 4);
+	reduce_tree(huffman_tree, 4);
 
-	creer_feuille(arbre_huffman, tab_caractere);
-	afficher_arbre_huffman(arbre_huffman, 4);
-	tri_arbre(arbre_huffman, 4);
-	afficher_arbre_huffman(arbre_huffman, 4);
+	// Save tree root
+	root = huffman_tree[0];
 
   /* USER CODE END 2 */
 
