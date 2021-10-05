@@ -65,10 +65,10 @@ void sort_tree(struct node* arbre[NB_CHAR_MAX], uint32_t taille);
 void reduce_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t i_size);
 
 /**
-  * @brief Count character occurrence
+  * @brief Browse Huffman tree and print all leafs
   * @retval None
   */
-//void tree_browse(static struct node* p_noeud);
+void tree_browse(struct node* p_node);
 
 #endif /* INC_HUFFMAN_H_ */
 /*****************************************************

@@ -148,10 +148,35 @@ void reduce_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t i_size)
 	} while(i_size != 1);
 }
 
-//void tree_browse(static struct node* p_noeud)
-//{
-//
-//}
+void tree_browse(struct node* p_node)
+{
+	// Check right and left pointers
+	if((p_node->droite == NULL) && (p_node->gauche == NULL))
+	{
+		// Print leaf information
+		printf("\r \n");
+		printf("Je suis une feuille");
+		printf("\r \n");
+		printf("%9c |",       p_node->character);
+		printf("  %9d |",     p_node->occurrence);
+		printf("%9d |",       p_node->droite);
+		printf("%9d |",       p_node->gauche);
+		printf("%9d |",       p_node->code);
+		printf("      %9d |", p_node->taille_code);
+		printf("\r \n");
+	}
+	else
+	{
+		// Print information
+		printf("\r \n");
+		printf("Je suis un noeud");
+		printf("\r \n");
+
+		// Continue to browse the tree
+		tree_browse(p_node->droite);
+		tree_browse(p_node->gauche);
+	}
+}
 
 /*****************************************************
  *            Private Functions Declaration          *

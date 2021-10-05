@@ -78,8 +78,8 @@ int main(void)
 	uint16_t index = 0;
 
 	// Huffman tree variables
-	struct node* huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
-	struct node* root;
+	struct node* p_huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
+	struct node* p_root;
 
   /* USER CODE END 1 */
 
@@ -115,26 +115,39 @@ int main(void)
 
 	// Create tree
 	occurrence(text, tab_caractere);
-	creer_feuille(huffman_tree, tab_caractere);
+	creer_feuille(p_huffman_tree, tab_caractere);
+
+	// Print indications
 	printf("\r \n");
 	printf("---------------------------- Initial tree ----------------------------");
 	printf("\r \n");
-	afficher_arbre_huffman(huffman_tree, 4);
+	afficher_arbre_huffman(p_huffman_tree, 4);
 
 	// Sort tree
-	sort_tree(huffman_tree, 4);
+	sort_tree(p_huffman_tree, 4);
+
+	// Print indications
 	printf("\r \n");
 	printf("---------------------------- Sorted tree ----------------------------");
 	printf("\r \n");
-	afficher_arbre_huffman(huffman_tree, 4);
+	afficher_arbre_huffman(p_huffman_tree, 4);
 
+	// Print indications
 	printf("\r \n");
 	printf("---------------------------- Reducing tree ----------------------------");
 	printf("\r \n");
-	reduce_tree(huffman_tree, 4);
+	reduce_tree(p_huffman_tree, 4);
 
 	// Save tree root
-	root = huffman_tree[0];
+	p_root = p_huffman_tree[0];
+
+	// Print indications
+	printf("\r \n");
+	printf("---------------------------- Browse tree ----------------------------");
+	printf("\r \n");
+
+	// Browse huffman tree form its root
+	tree_browse(p_root);
 
   /* USER CODE END 2 */
 
