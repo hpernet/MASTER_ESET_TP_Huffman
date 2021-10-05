@@ -12,8 +12,17 @@
 /*****************************************************
  *             Private Functions Prototype           *
  ****************************************************/
-static void shift_tree(struct noeud* io_tree[NB_CHAR_MAX], uint32_t* io_size);
-static struct noeud* new_node(struct noeud* io_tree[NB_CHAR_MAX]);
+/**
+  * @brief Shift tree leafs
+  * @retval None
+  */
+static void shift_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t* io_size);
+
+/**
+  * @brief Create a new node
+  * @retval None
+  */
+static struct node* new_node(struct node* io_tree[NB_CHAR_MAX]);
 
 /*****************************************************
  *             Public Functions Declaration          *
@@ -43,7 +52,7 @@ void occurrence(uint8_t* i_chain, uint32_t* o_tab)
 /**
  *  @brief Create leaf
  */
-void creer_feuille(struct noeud* o_tree[NB_CHAR_MAX], uint32_t i_array[NB_CHAR_MAX])
+void creer_feuille(struct node* o_tree[NB_CHAR_MAX], uint32_t i_array[NB_CHAR_MAX])
 {
 	// Variable declaration
 	uint16_t index_occ  = 0;
@@ -56,7 +65,7 @@ void creer_feuille(struct noeud* o_tree[NB_CHAR_MAX], uint32_t i_array[NB_CHAR_M
 		if (0 != i_array[index_occ])
 		{
 			// Allocate memory to the new char
-			o_tree[tree_size] = malloc(sizeof(struct noeud));
+			o_tree[tree_size] = malloc(sizeof(struct node));
 
 			// Initialize feuille
 			o_tree[tree_size]->character   = index_occ;
@@ -72,7 +81,7 @@ void creer_feuille(struct noeud* o_tree[NB_CHAR_MAX], uint32_t i_array[NB_CHAR_M
 	}
 }
 
-void afficher_arbre_huffman(struct noeud* i_tree[NB_CHAR_MAX], uint32_t i_size)
+void afficher_arbre_huffman(struct node* i_tree[NB_CHAR_MAX], uint32_t i_size)
 {
 	// Variable declaration
 	uint16_t tree_index;
@@ -98,12 +107,12 @@ void afficher_arbre_huffman(struct noeud* i_tree[NB_CHAR_MAX], uint32_t i_size)
 	printf("\r \n");
 }
 
-void sort_tree(struct noeud* io_tree[NB_CHAR_MAX], uint32_t i_size)
+void sort_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t i_size)
 {
 	// Variable declaration
 	uint16_t index_algo;
 	uint16_t tree_index;
-	struct noeud* p_temp_variable;
+	struct node* p_temp_variable;
 
 	// Repeat the sorted algorithm
 	for (index_algo = 0; index_algo < i_size - 1; index_algo++)
@@ -123,7 +132,7 @@ void sort_tree(struct noeud* io_tree[NB_CHAR_MAX], uint32_t i_size)
 	}
 }
 
-void reduce_tree(struct noeud* io_tree[NB_CHAR_MAX], uint32_t i_size)
+void reduce_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t i_size)
 {
 	do
 	{
@@ -139,16 +148,21 @@ void reduce_tree(struct noeud* io_tree[NB_CHAR_MAX], uint32_t i_size)
 	} while(i_size != 1);
 }
 
+//void tree_browse(static struct node* p_noeud)
+//{
+//
+//}
+
 /*****************************************************
  *            Private Functions Declaration          *
  ****************************************************/
-static struct noeud* new_node(struct noeud* i_tree[NB_CHAR_MAX])
+static struct node* new_node(struct node* i_tree[NB_CHAR_MAX])
 {
 	// Variable declaration
-	struct noeud* r_p_temp_variable;
+	struct node* r_p_temp_variable;
 
 	// Allocate memory to the node
-	r_p_temp_variable = malloc(sizeof(struct noeud));
+	r_p_temp_variable = malloc(sizeof(struct node));
 
 	// Initialize node
 	r_p_temp_variable->character   = '!';
@@ -159,7 +173,7 @@ static struct noeud* new_node(struct noeud* i_tree[NB_CHAR_MAX])
 	r_p_temp_variable->taille_code = 0;
 }
 
-static void shift_tree(struct noeud* io_tree[NB_CHAR_MAX], uint32_t* io_size)
+static void shift_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t* io_size)
 {
 	// Variable declaration
 	uint16_t index_algo;

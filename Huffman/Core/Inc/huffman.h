@@ -20,7 +20,8 @@
 /*****************************************************
  *                     Structure                     *
  ****************************************************/
-struct noeud
+// Nodes
+struct node
 {
 	uint8_t      character;   // Caractere initial.
 	uint32_t     occurrence;  // Occurrence number.
@@ -33,11 +34,41 @@ struct noeud
 /*****************************************************
  *                 Public Functions                  *
  ****************************************************/
+/**
+  * @brief Count character occurrence
+  * @retval None
+  */
 void occurrence(uint8_t* i_chaine, uint32_t o_tab[NB_CHAR_MAX]);
-void creer_feuille(struct noeud* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX]);
-void afficher_arbre_huffman(struct noeud* i_arbre[NB_CHAR_MAX], uint32_t i_taille);
-void sort_tree(struct noeud* arbre[NB_CHAR_MAX], uint32_t taille);
-void reduce_tree(struct noeud* io_tree[NB_CHAR_MAX], uint32_t i_size);
+
+/**
+  * @brief Create leaf
+  * @retval None
+  */
+void creer_feuille(struct node* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX]);
+
+/**
+  * @brief Print huffman tree
+  * @retval None
+  */
+void afficher_arbre_huffman(struct node* i_arbre[NB_CHAR_MAX], uint32_t i_taille);
+
+/**
+  * @brief Sort tree by occurrences
+  * @retval None
+  */
+void sort_tree(struct node* arbre[NB_CHAR_MAX], uint32_t taille);
+
+/**
+  * @brief Reduce tree by creating nodes
+  * @retval None
+  */
+void reduce_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t i_size);
+
+/**
+  * @brief Count character occurrence
+  * @retval None
+  */
+//void tree_browse(static struct node* p_noeud);
 
 #endif /* INC_HUFFMAN_H_ */
 /*****************************************************

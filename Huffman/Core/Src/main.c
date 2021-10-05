@@ -77,8 +77,9 @@ int main(void)
 	uint16_t init_index = 0;
 	uint16_t index = 0;
 
-	struct noeud* huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
-	struct noeud* root;
+	// Huffman tree variables
+	struct node* huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
+	struct node* root;
 
   /* USER CODE END 1 */
 
@@ -108,12 +109,28 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+	printf("\r \n");
+	printf("---------------------------- Program start ----------------------------");
+	printf("\r \n");
 
+	// Create tree
 	occurrence(text, tab_caractere);
 	creer_feuille(huffman_tree, tab_caractere);
+	printf("\r \n");
+	printf("---------------------------- Initial tree ----------------------------");
+	printf("\r \n");
 	afficher_arbre_huffman(huffman_tree, 4);
+
+	// Sort tree
 	sort_tree(huffman_tree, 4);
+	printf("\r \n");
+	printf("---------------------------- Sorted tree ----------------------------");
+	printf("\r \n");
 	afficher_arbre_huffman(huffman_tree, 4);
+
+	printf("\r \n");
+	printf("---------------------------- Reducing tree ----------------------------");
+	printf("\r \n");
 	reduce_tree(huffman_tree, 4);
 
 	// Save tree root
