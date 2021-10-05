@@ -1,8 +1,9 @@
 huffman.c:33:6:occurrence	24	static
-huffman.c:55:6:creer_feuille	32	static
-huffman.c:84:6:afficher_arbre_huffman	24	static
-huffman.c:110:6:sort_tree	24	static
-huffman.c:135:6:reduce_tree	16	static
-huffman.c:151:6:tree_browse	16	static
-huffman.c:184:21:new_node	24	static
-huffman.c:201:13:shift_tree	24	static
+huffman.c:55:10:creer_feuille	32	static
+huffman.c:87:6:afficher_arbre_huffman	24	static
+huffman.c:113:6:sort_tree	24	static
+huffman.c:138:6:reduce_tree	16	static
+huffman.c:155:6:tree_browse	16	static
+huffman.c:180:6:create_code	24	static
+huffman.c:206:21:new_node	24	static
+huffman.c:223:13:shift_tree	24	static

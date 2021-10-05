@@ -33,6 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -69,13 +70,12 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
     // Variable declaration
-	uint8_t text[] = "aaaabbbccd";    // Texte à compresser
-//	uint8_t text_compressed[TAILLE_MAX_COMPRESS];
-	uint32_t tab_caractere[NB_CHAR_MAX];
-	uint32_t nbr_char_tot;
-	uint32_t nbr_chat_diff;
-	uint16_t init_index = 0;
-	uint16_t index = 0;
+	uint8_t text[] = "aaaabbbccd";        // Text to compress Une banane   aaaabbbccd
+	uint32_t tab_caractere[NB_CHAR_MAX];  // Array which contain all character
+	uint16_t init_index = 0U;             // loop index used o initialize tab_caractere
+	uint16_t tree_size  = 0U;             // Size of the tree
+	uint16_t code       = 0U;
+	uint8_t  code_size  = 0U;
 
 	// Huffman tree variables
 	struct node* p_huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
@@ -115,31 +115,50 @@ int main(void)
 
 	// Create tree
 	occurrence(text, tab_caractere);
-	creer_feuille(p_huffman_tree, tab_caractere);
+	tree_size = creer_feuille(p_huffman_tree, tab_caractere);
 
 	// Print indications
 	printf("\r \n");
 	printf("---------------------------- Initial tree ----------------------------");
 	printf("\r \n");
-	afficher_arbre_huffman(p_huffman_tree, 4);
+	afficher_arbre_huffman(p_huffman_tree, tree_size);
 
 	// Sort tree
-	sort_tree(p_huffman_tree, 4);
+	sort_tree(p_huffman_tree, tree_size);
 
 	// Print indications
 	printf("\r \n");
 	printf("---------------------------- Sorted tree ----------------------------");
 	printf("\r \n");
-	afficher_arbre_huffman(p_huffman_tree, 4);
+	afficher_arbre_huffman(p_huffman_tree, tree_size);
 
 	// Print indications
 	printf("\r \n");
 	printf("---------------------------- Reducing tree ----------------------------");
 	printf("\r \n");
-	reduce_tree(p_huffman_tree, 4);
+	reduce_tree(p_huffman_tree, tree_size);
 
 	// Save tree root
 	p_root = p_huffman_tree[0];
+
+/*
+	// Print indications
+	printf("\r \n");
+	printf("---------------------------- Browse tree ----------------------------");
+	printf("\r \n");
+
+	// Browse huffman tree form its root
+	tree_browse(p_root);
+*/
+
+	// Print indications
+	printf("\r \n");
+	printf("---------------------------- Create code ----------------------------");
+	printf("\r \n");
+
+	// Create code
+	create_code(p_root, code, code_size);
+
 
 	// Print indications
 	printf("\r \n");
@@ -148,6 +167,8 @@ int main(void)
 
 	// Browse huffman tree form its root
 	tree_browse(p_root);
+
+	// Print tree
 
   /* USER CODE END 2 */
 
@@ -275,7 +296,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 int __io_putchar(int ch) {
- HAL_UART_Transmit(&huart2, &ch, 1, 1000);
+	HAL_UART_Transmit(&huart2, &ch, 1, 1000);
 }
 
 /* USER CODE END 4 */

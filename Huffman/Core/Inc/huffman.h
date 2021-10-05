@@ -23,10 +23,10 @@
 // Nodes
 struct node
 {
-	uint8_t      character;   // Caractere initial.
+	uint8_t      character;   // Character.
 	uint32_t     occurrence;  // Occurrence number.
 	uint32_t     code;        // Code binaire dans l'arbre.
-	uint32_t     taille_code; // Nombre de bit du code.
+	uint32_t     size_code;   // Nombre de bit du code.
 	struct noeud *gauche;     // Lien vers les noeuds suivant.
 	struct noeud *droite;     //             --
 };
@@ -44,7 +44,7 @@ void occurrence(uint8_t* i_chaine, uint32_t o_tab[NB_CHAR_MAX]);
   * @brief Create leaf
   * @retval None
   */
-void creer_feuille(struct node* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX]);
+uint16_t creer_feuille(struct node* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX]);
 
 /**
   * @brief Print huffman tree
@@ -69,6 +69,12 @@ void reduce_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t i_size);
   * @retval None
   */
 void tree_browse(struct node* p_node);
+
+/**
+  * @brief Create Huffman code
+  * @retval None
+  */
+void create_code(struct node* p_node, uint32_t code, uint32_t size);
 
 #endif /* INC_HUFFMAN_H_ */
 /*****************************************************
