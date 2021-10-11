@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "huffman.h"
+#include "compression_code.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -33,7 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define MAX_COMPRESS_SIZE 256
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -70,17 +70,17 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
     // Variable declaration
-	uint8_t text[] = "aaaabbbccd";        // Text to compress Une banane   aaaabbbccd
-	uint32_t tab_caractere[NB_CHAR_MAX];  // Array which contain all character
-	uint16_t init_index = 0U;             // loop index used o initialize tab_caractere
-	uint16_t tree_size  = 0U;             // Size of the tree
+	uint8_t  text[]     = "aaaabbbccd";        // Text to compress Une banane   aaaabbbccd
+	uint8_t  init_index = 0U;             // loop index used o initialize tab_caractere
+	uint8_t  tree_size  = 0U;             // Size of the tree
 	uint16_t code       = 0U;
 	uint8_t  code_size  = 0U;
+	uint8_t  text_compress[MAX_COMPRESS_SIZE];
+	uint32_t tab_caractere[NB_CHAR_MAX];  // Array which contain all character
 
 	// Huffman tree variables
 	struct node* p_huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
 	struct node* p_root;
-	struct node* p_char;
 
   /* USER CODE END 1 */
 
@@ -99,9 +99,15 @@ int main(void)
   /* USER CODE BEGIN SysInit */
 
   // Initialize tab caractere
-  for (init_index =0; init_index < NB_CHAR_MAX; init_index++)
+  for (init_index =0; init_index < ARRAY_SIZE; init_index++)
   {
 	  tab_caractere[init_index] = 0;
+  }
+
+  // Initialize text_compresss
+  for (init_index =0; init_index < ARRAY_SIZE; init_index++)
+  {
+	  text_compress[init_index] = 0;
   }
 
   /* USER CODE END SysInit */
@@ -110,8 +116,9 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+
 	printf("\r \n");
-	printf("---------------------------- Program start ----------------------------");
+	printf("--- Program start ---");
 	printf("\r \n");
 
 	// Create tree
@@ -120,7 +127,7 @@ int main(void)
 
 	// Print indications
 	printf("\r \n");
-	printf("---------------------------- Initial tree ----------------------------");
+	printf("--- Initial tree ---");
 	printf("\r \n");
 	afficher_arbre_huffman(p_huffman_tree, tree_size);
 
@@ -129,57 +136,34 @@ int main(void)
 
 	// Print indications
 	printf("\r \n");
-	printf("---------------------------- Sorted tree ----------------------------");
-	printf("\r \n");
-	afficher_arbre_huffman(p_huffman_tree, tree_size);
-
-	// Print indications
-	printf("\r \n");
-	printf("---------------------------- Reducing tree ----------------------------");
+	printf("--- Reducing tree ---");
 	printf("\r \n");
 	reduce_tree(p_huffman_tree, tree_size);
 
 	// Save tree root
 	p_root = p_huffman_tree[0];
 
-/*
 	// Print indications
 	printf("\r \n");
-	printf("---------------------------- Browse tree ----------------------------");
-	printf("\r \n");
-
-	// Browse huffman tree form its root
-	tree_browse(p_root);
-*/
-
-	// Print indications
-	printf("\r \n");
-	printf("---------------------------- Create code ----------------------------");
+	printf("--- Create code ---");
 	printf("\r \n");
 
 	// Create code
 	create_code(p_root, code, code_size);
 
-
 	// Print indications
 	printf("\r \n");
-	printf("---------------------------- Browse tree ----------------------------");
+	printf("--- Browse tree ---");
 	printf("\r \n");
 
 	// Browse huffman tree form its root
+	// That function print the tree
 	tree_browse(p_root);
 
-	p_char = get_adress(p_root, 'a');
+	printf("\r \n");
 
-	// Print char information
-	printf("\r \n");
-	printf("%9c |",       p_char->character);
-	printf("  %9d |",     p_char->occurrence);
-	printf("%9d |",       p_char->droite);
-	printf("%9d |",       p_char->gauche);
-	printf("%9d |",       p_char->code);
-	printf("      %9d |", p_char->size_code);
-	printf("\r \n");
+	// Compress text
+	compress_text(p_root, text, text_compress);
 
   /* USER CODE END 2 */
 
@@ -306,7 +290,8 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-int __io_putchar(int ch) {
+int __io_putchar(int ch)
+{
 	HAL_UART_Transmit(&huart2, &ch, 1, 1000);
 }
 

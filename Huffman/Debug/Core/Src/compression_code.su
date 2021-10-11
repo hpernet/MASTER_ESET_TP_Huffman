@@ -1,0 +1,2 @@
+compression_code.c:15:6:create_code	24	static
+compression_code.c:34:6:compress_text	48	static

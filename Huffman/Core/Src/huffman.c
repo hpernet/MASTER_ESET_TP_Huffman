@@ -59,7 +59,7 @@ uint16_t creer_feuille(struct node* o_tree[NB_CHAR_MAX], uint32_t i_array[NB_CHA
 	uint16_t r_tree_size = 0;
 
 	// Check occurrence array
-	for (index_occ = 0; index_occ < NB_CHAR_MAX; index_occ++)
+	for (index_occ = 0; index_occ < ARRAY_SIZE; index_occ++)
 	{
 		// If there is a char
 		if (0 != i_array[index_occ])
@@ -159,8 +159,6 @@ void tree_browse(struct node* p_node)
 	{
 		// Print leaf information
 		printf("\r \n");
-		printf("Je suis une feuille");
-		printf("\r \n");
 		printf("%9c |",       p_node->character);
 		printf("  %9d |",     p_node->occurrence);
 		printf("%9d |",       p_node->droite);
@@ -177,25 +175,6 @@ void tree_browse(struct node* p_node)
 	}
 }
 
-void create_code(struct node* p_node, uint32_t i_code, uint32_t i_size)
-{
-	// Check right and left pointers
-	if((p_node->droite == NULL) && (p_node->gauche == NULL))
-	{
-		// Fill in node
-		p_node->size_code = i_size;
-		p_node->code      = i_code;
-	}
-	else
-	{
-		// Continue to browse the tree
-		//    Notice : When we go to right we put a 0 in the code
-		//             When we go to left we put a 1 in the code
-		create_code(p_node->droite, (i_code << 1),       i_size + 1);
-		create_code(p_node->gauche, ((i_code << 1) + 1), i_size + 1);
-	}
-}
-
 struct node* get_adress(struct node* p_node, uint8_t i_char)
 {
 	// Variable declaration
@@ -209,12 +188,21 @@ struct node* get_adress(struct node* p_node, uint8_t i_char)
 			r_p_node = p_node;
 			return r_p_node;
 		}
+		else
+		{
+			return NULL;
+		}
 	}
 	else
 	{
 		// Continue to browse the tree
-		return get_adress(p_node->droite, i_char);
-		return get_adress(p_node->gauche, i_char);
+		r_p_node = get_adress(p_node->droite, i_char);
+
+		// Check returned value
+		if(r_p_node == NULL)
+		{
+			return get_adress(p_node->gauche, i_char);
+		}
 	}
 }
 

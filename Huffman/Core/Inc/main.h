@@ -43,12 +43,14 @@ extern "C" {
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
 #define NB_CHAR_MAX      256
+#define ARRAY_SIZE       255
 
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+#define MACRO_READ_BIT(REG, POS)  REG & (1 << POS)
+#define MACRO_SET_BIT(REG, POS)   REG = REG | (1 << POS)
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
