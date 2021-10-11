@@ -1,5 +1,8 @@
-Core/Src/huffman.o: ../Core/Src/huffman.c ../Core/Inc/huffman.h \
- ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+Core/compression/compression_code.o: \
+ ../Core/compression/compression_code.c \
+ ../Core/compression/compression_code.h ../Core/compression/huffman.h \
+ ../Core/compression/../Inc/main.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -26,9 +29,11 @@ Core/Src/huffman.o: ../Core/Src/huffman.c ../Core/Inc/huffman.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 
-../Core/Inc/huffman.h:
+../Core/compression/compression_code.h:
 
-../Core/Inc/main.h:
+../Core/compression/huffman.h:
+
+../Core/compression/../Inc/main.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
