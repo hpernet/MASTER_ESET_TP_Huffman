@@ -70,17 +70,12 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
     // Variable declaration
-	uint8_t  text[]     = "aaaabbbccd";        // Text to compress Une banane   aaaabbbccd
-	uint8_t  init_index = 0U;             // loop index used o initialize tab_caractere
-	uint8_t  tree_size  = 0U;             // Size of the tree
-	uint16_t code       = 0U;
-	uint8_t  code_size  = 0U;
-	uint8_t  text_compress[MAX_COMPRESS_SIZE];
-	uint32_t tab_caractere[NB_CHAR_MAX];  // Array which contain all character
-
-	// Huffman tree variables
-	struct node* p_huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
-	struct node* p_root;
+	uint8_t      text[]     = "aaaabbbccd";   // Text to compress Une banane   aaaabbbccd
+	uint8_t      init_index = 0U;             // loop index used o initialize array
+	uint16_t     code       = 0U;
+	uint8_t      code_size  = 0U;
+	uint8_t      text_compress[MAX_COMPRESS_SIZE];
+	struct node* p_root;	             // Huffman tree root
 
   /* USER CODE END 1 */
 
@@ -97,12 +92,6 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
-  // Initialize tab caractere
-  for (init_index =0; init_index < ARRAY_SIZE; init_index++)
-  {
-	  tab_caractere[init_index] = 0;
-  }
 
   // Initialize text_compresss
   for (init_index =0; init_index < ARRAY_SIZE; init_index++)
@@ -121,46 +110,11 @@ int main(void)
 	printf("--- Program start ---");
 	printf("\r \n");
 
-	// Create tree
-	occurrence(text, tab_caractere);
-	tree_size = creer_feuille(p_huffman_tree, tab_caractere);
-
-	// Print indications
-	printf("\r \n");
-	printf("--- Initial tree ---");
-	printf("\r \n");
-	afficher_arbre_huffman(p_huffman_tree, tree_size);
-
-	// Sort tree
-	sort_tree(p_huffman_tree, tree_size);
-
-	// Print indications
-	printf("\r \n");
-	printf("--- Reducing tree ---");
-	printf("\r \n");
-	reduce_tree(p_huffman_tree, tree_size);
-
-	// Save tree root
-	p_root = p_huffman_tree[0];
-
-	// Print indications
-	printf("\r \n");
-	printf("--- Create code ---");
-	printf("\r \n");
+	// Initiate Huffman tree
+	p_root = initialize_huffman_tree(text);
 
 	// Create code
 	create_code(p_root, code, code_size);
-
-	// Print indications
-	printf("\r \n");
-	printf("--- Browse tree ---");
-	printf("\r \n");
-
-	// Browse huffman tree form its root
-	// That function print the tree
-	tree_browse(p_root);
-
-	printf("\r \n");
 
 	// Compress text
 	compress_text(p_root, text, text_compress);

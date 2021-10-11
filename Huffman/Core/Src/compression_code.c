@@ -4,14 +4,40 @@
  *  Created on: 11 oct. 2021
  *      Author: hugop
  */
-/*****************************************************
- *                      Include                      *
- ****************************************************/
+//=========================================================================================================//
+//                                                 Include                                                 //
+//=========================================================================================================//
 #include "compression_code.h"
 
-/*****************************************************
- *             Public Functions Declaration          *
- ****************************************************/
+//=========================================================================================================//
+//                                             Public Functions                                            //
+//=========================================================================================================//
+struct node* initialize_huffman_tree(uint8_t  i_text[])
+{
+	uint32_t     occurence_character[NB_CHAR_MAX];  // Array which contain all character
+	struct node* p_huffman_tree[NB_CHAR_MAX];  // TODO Dynamic allocation
+	uint8_t      tree_size  = 0U;             // Size of the tree
+	uint8_t      init_index = 0U;             // loop index used o initialize tab_caractere
+
+	// Initialize tab caractere
+	for (init_index = 0; init_index < ARRAY_SIZE; init_index++)
+	{
+		occurence_character[init_index] = 0;
+	}
+
+	// Compute occurence_character
+	occurrence(i_text, occurence_character);
+
+	// Create leaf for all characters
+	tree_size = creer_feuille(p_huffman_tree, occurence_character);
+
+	// Sort and reduce tree
+	sort_tree(p_huffman_tree, tree_size);
+	reduce_tree(p_huffman_tree, tree_size);
+
+	// return tree root
+	return p_huffman_tree[0];
+}
 void create_code(struct node* p_node, uint32_t i_code, uint32_t i_size)
 {
 	// Check right and left pointers
@@ -76,6 +102,6 @@ void compress_text(struct node* i_p_root, uint8_t  i_text[], uint8_t* o_compress
 	// Until we reach the end of the chain
 	}while(END_CHAR != i_text[index_text]);
 }
-/*****************************************************
- *                    End of file                    *
- ****************************************************/
+//=========================================================================================================//
+//                                               End of file                                               //
+//=========================================================================================================//

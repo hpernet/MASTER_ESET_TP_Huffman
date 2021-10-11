@@ -9,9 +9,9 @@
  ****************************************************/
 #include "huffman.h"
 
-/*****************************************************
- *             Private Functions Prototype           *
- ****************************************************/
+//=========================================================================================================//
+//                                       Private Functions Prototypes                                      //
+//=========================================================================================================//
 /**
   * @brief Shift tree leafs
   * @retval None
@@ -24,13 +24,13 @@ static void shift_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t* io_size);
   */
 static struct node* new_node(struct node* io_tree[NB_CHAR_MAX]);
 
-/*****************************************************
- *             Public Functions Declaration          *
- ****************************************************/
+//=========================================================================================================//
+//                                             Public Functions                                            //
+//=========================================================================================================//
 /**
  *  @brief Fill in occurrence array
  */
-void occurrence(uint8_t* i_chain, uint32_t* o_tab)
+void occurrence(uint8_t* i_text, uint32_t* o_tab)
 {
 	// Variable declaration
 	uint16_t index = 0;
@@ -38,15 +38,13 @@ void occurrence(uint8_t* i_chain, uint32_t* o_tab)
 	do
 	{
 		// Increment occurrence array
-		o_tab[i_chain[index]]++;
+		o_tab[i_text[index]]++;
 
 		// Increment index
 		index++;
 
 	// Until we reach the end of the chain
-	}while(END_CHAR != i_chain[index]);
-
-	// TODO : print occurence tab on Serial Com
+	}while(END_CHAR != i_text[index]);
 }
 
 /**
@@ -204,11 +202,10 @@ struct node* get_adress(struct node* p_node, uint8_t i_char)
 			return get_adress(p_node->gauche, i_char);
 		}
 	}
-}
 
-/*****************************************************
- *            Private Functions Declaration          *
- ****************************************************/
+//=========================================================================================================//
+//                                            Private Functions                                            //
+//=========================================================================================================//
 static struct node* new_node(struct node* i_tree[NB_CHAR_MAX])
 {
 	// Variable declaration
@@ -241,6 +238,7 @@ static void shift_tree(struct node* io_tree[NB_CHAR_MAX], uint32_t* io_size)
 	}
 }
 
-/*****************************************************
- *                    End of file                    *
- ****************************************************/
+//=========================================================================================================//
+//                                               End of file                                               //
+//=========================================================================================================//
+
