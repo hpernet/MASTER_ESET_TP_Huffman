@@ -1,4 +1,7 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/communication_management/communication.o: \
+ ../Core/communication_management/communication.c \
+ ../Core/communication_management/communication.h \
+ ../Core/communication_management/../Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -25,14 +28,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Src/../compression/compression_code.h \
- ../Core/Src/../compression/huffman.h \
- ../Core/Src/../compression/../Inc/main.h \
- ../Core/Src/../communication_management/communication.h \
- ../Core/Src/../communication_management/../Inc/main.h \
- ../Core/Src/../communication_management/../compression/huffman.h
+ ../Core/communication_management/../compression/huffman.h \
+ d:\git\firmware\tp_progc_hoffman\huffman\core\inc\main.h
 
-../Core/Inc/main.h:
+../Core/communication_management/communication.h:
+
+../Core/communication_management/../Inc/main.h:
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -86,14 +87,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 
-../Core/Src/../compression/compression_code.h:
+../Core/communication_management/../compression/huffman.h:
 
-../Core/Src/../compression/huffman.h:
-
-../Core/Src/../compression/../Inc/main.h:
-
-../Core/Src/../communication_management/communication.h:
-
-../Core/Src/../communication_management/../Inc/main.h:
-
-../Core/Src/../communication_management/../compression/huffman.h:
+d:\git\firmware\tp_progc_hoffman\huffman\core\inc\main.h:

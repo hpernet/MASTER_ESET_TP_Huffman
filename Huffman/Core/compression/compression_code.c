@@ -1,9 +1,9 @@
-/*
+/*******************************************************************************
  * compression_code.c
  *
  *  Created on: 11 oct. 2021
  *      Author: hugop
- */
+ ******************************************************************************/
 //=========================================================================================================//
 //                                                 Include                                                 //
 //=========================================================================================================//
@@ -29,7 +29,7 @@ struct node* initialize_huffman_tree(uint8_t  i_text[])
 	occurrence(i_text, occurence_character);
 
 	// Create leaf for all characters
-	tree_size = creer_feuille(p_huffman_tree, occurence_character);
+	tree_size = create_leaf(p_huffman_tree, occurence_character);
 
 	// Sort and reduce tree
 	sort_tree(p_huffman_tree, tree_size);
@@ -38,7 +38,10 @@ struct node* initialize_huffman_tree(uint8_t  i_text[])
 	// return tree root
 	return p_huffman_tree[0];
 }
-void create_code(struct node* p_node, uint32_t i_code, uint32_t i_size)
+
+void create_code(struct node* p_node,
+		         uint32_t     i_code,
+				 uint32_t     i_size)
 {
 	// Check right and left pointers
 	if((p_node->droite == NULL) && (p_node->gauche == NULL))
@@ -57,7 +60,12 @@ void create_code(struct node* p_node, uint32_t i_code, uint32_t i_size)
 	}
 }
 
-void compress_text(struct node* i_p_root, uint8_t  i_text[], uint8_t* o_compressed_text)
+
+void compress_text(struct node* i_p_root,
+		           uint8_t      i_text[],
+				   uint8_t*     o_compressed_text,
+				   uint32_t*    o_compressed_text_size,
+				   uint32_t*    o_text_size)
 {
 	// Variable declaration
 	struct node* p_leaf;
@@ -100,7 +108,11 @@ void compress_text(struct node* i_p_root, uint8_t  i_text[], uint8_t* o_compress
 		index_text++;
 
 	// Until we reach the end of the chain
-	}while(END_CHAR != i_text[index_text]);
+	} while(END_CHAR != i_text[index_text]);
+
+	// Set output values
+	*o_compressed_text_size = index_bit_text;
+	*o_text_size            = index_text;
 }
 //=========================================================================================================//
 //                                               End of file                                               //

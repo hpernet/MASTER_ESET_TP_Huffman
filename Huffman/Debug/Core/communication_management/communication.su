@@ -1,0 +1,2 @@
+communication.c:23:17:create_header	816	static
+communication.c:48:6:fill_in_char_informations	24	static

@@ -50,7 +50,7 @@ void occurrence(uint8_t* i_text, uint32_t* o_tab)
 /**
  *  @brief Create leaf
  */
-uint16_t creer_feuille(struct node* o_tree[NB_CHAR_MAX], uint32_t i_array[NB_CHAR_MAX])
+uint16_t create_leaf(struct node* o_tree[NB_CHAR_MAX], uint32_t i_array[NB_CHAR_MAX])
 {
 	// Variable declaration
 	uint16_t index_occ   = 0;
@@ -99,11 +99,11 @@ void afficher_arbre_huffman(struct node* i_tree[NB_CHAR_MAX], uint32_t i_size)
 		printf("-------------------------------------------------------------------------- ");
 		printf("\r \n");
 		printf("%9c |",       i_tree[tree_index]->character);
-		printf("  %9d |",     i_tree[tree_index]->occurrence);
-		printf("%9d |",       i_tree[tree_index]->droite);
-		printf("%9d |",       i_tree[tree_index]->gauche);
-		printf("%9d |",       i_tree[tree_index]->code);
-		printf("      %9d |", i_tree[tree_index]->size_code);
+		printf("  %9d |",     (int) i_tree[tree_index]->occurrence);
+		printf("%9d |",       (int) i_tree[tree_index]->droite);
+		printf("%9d |",       (int) i_tree[tree_index]->gauche);
+		printf("%9d |",       (int) i_tree[tree_index]->code);
+		printf("      %9d |", (int) i_tree[tree_index]->size_code);
 	}
 	printf("\r \n");
 }
@@ -158,11 +158,11 @@ void tree_browse(struct node* p_node)
 		// Print leaf information
 		printf("\r \n");
 		printf("%9c |",       p_node->character);
-		printf("  %9d |",     p_node->occurrence);
-		printf("%9d |",       p_node->droite);
-		printf("%9d |",       p_node->gauche);
-		printf("%9d |",       p_node->code);
-		printf("      %9d |", p_node->size_code);
+		printf("  %9d |",     (int) p_node->occurrence);
+		printf("%9d |",       (int) p_node->droite);
+		printf("%9d |",       (int) p_node->gauche);
+		printf("%9d |",       (int) p_node->code);
+		printf("      %9d |", (int) p_node->size_code);
 		printf("\r \n");
 	}
 	else

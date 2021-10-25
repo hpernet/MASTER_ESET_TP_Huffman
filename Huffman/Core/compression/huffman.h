@@ -1,9 +1,9 @@
-/*****************************************************
+/*******************************************************************************
  * huffman.h
  *
  *  Created on: Sep 20, 2021
  *      Author: hugop
- *****************************************************/
+ ******************************************************************************/
 #ifndef INC_HUFFMAN_H_
 #define INC_HUFFMAN_H_
 
@@ -11,13 +11,6 @@
 //                                                 Include                                                 //
 //=========================================================================================================//
 #include "../Inc/main.h"
-
-//=========================================================================================================//
-//                                                 Define                                                  //
-//=========================================================================================================//
-#define END_CHAR         '\0'
-#define NB_CHAR_MAX      256
-#define ARRAY_SIZE       255
 
 //=========================================================================================================//
 //                                               Structure                                                 //
@@ -46,19 +39,19 @@ void occurrence(uint8_t* i_chaine, uint32_t o_tab[NB_CHAR_MAX]);
   * @brief Create leaf
   * @retval None
   */
-uint16_t creer_feuille(struct node* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX]);
+uint16_t create_leaf(struct node* o_arbre[NB_CHAR_MAX], uint32_t i_tab[NB_CHAR_MAX]);
 
 /**
   * @brief Print huffman tree
   * @retval None
   */
-void afficher_arbre_huffman(struct node* i_arbre[NB_CHAR_MAX], uint32_t i_taille);
+void afficher_arbre_huffman(struct node* i_arbre[NB_CHAR_MAX], uint32_t i_size);
 
 /**
   * @brief Sort tree by occurrences
   * @retval None
   */
-void sort_tree(struct node* arbre[NB_CHAR_MAX], uint32_t taille);
+void sort_tree(struct node* arbre[NB_CHAR_MAX], uint32_t i_size);
 
 /**
   * @brief Reduce tree by creating nodes

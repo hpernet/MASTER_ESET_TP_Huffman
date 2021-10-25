@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "../compression/compression_code.h"
+#include "../communication_management/communication.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -34,6 +35,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define MAX_COMPRESS_SIZE 256
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -70,12 +72,15 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
     // Variable declaration
-	uint8_t      text[]     = "aaaabbbccd";   // Text to compress Une banane   aaaabbbccd
-	uint8_t      init_index = 0U;             // loop index used o initialize array
-	uint16_t     code       = 0U;
-	uint8_t      code_size  = 0U;
-	uint8_t      text_compress[MAX_COMPRESS_SIZE];
-	struct node* p_root;	             // Huffman tree root
+	uint8_t  text[]     = "aaaabbbccd";   // Text to compress Une banane   aaaabbbccd
+	uint8_t  init_index = 0U;             // loop index used o initialize array
+	uint8_t  code_size  = 0U;
+	uint16_t code       = 0U;
+	uint32_t compressed_text_size = 0U;
+	uint32_t text_size            = 0U;
+	uint8_t  text_compress[MAX_COMPRESS_SIZE];
+	struct node*    p_root;	             // Huffman tree root
+	struct header_s header;
 
   /* USER CODE END 1 */
 
@@ -94,7 +99,7 @@ int main(void)
   /* USER CODE BEGIN SysInit */
 
   // Initialize text_compresss
-  for (init_index =0; init_index < ARRAY_SIZE; init_index++)
+  for (init_index = 0; init_index < ARRAY_SIZE; init_index++)
   {
 	  text_compress[init_index] = 0;
   }
@@ -114,10 +119,21 @@ int main(void)
 	p_root = initialize_huffman_tree(text);
 
 	// Create code
-	create_code(p_root, code, code_size);
+	create_code(p_root,
+			    code,
+				code_size);
 
 	// Compress text
-	compress_text(p_root, text, text_compress);
+	compress_text(p_root,
+			      text,
+				  text_compress,
+				  &compressed_text_size,
+				  &text_size);
+
+	// Create header for send
+	header = create_header(compressed_text_size,
+						   text_size,
+						   p_root);
 
   /* USER CODE END 2 */
 
